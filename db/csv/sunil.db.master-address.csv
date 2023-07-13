@@ -1,0 +1,3 @@
+node_key,city,postal_code,street,country,val_start_date,val_end_date,latitude,longitude
+33f69a02-1674-11ee-be56-0242ac120002,Bangalore,560087,Varthur,IN,01/01/2023,01/01/2024,47.898,23.789
+3ad8b530-1674-11ee-be56-0242ac120002,Cuttack,754008,Nuapada,IN,01/01/2023,03/01/2024,54.909,32.9909
