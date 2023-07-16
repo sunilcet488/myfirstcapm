@@ -23,3 +23,25 @@ File or Folder | Purpose
 ## Learn More
 
 Learn more at https://cap.cloud.sap/docs/get-started/.
+
+My Note:
+
+System automatically generate the V4 version of the odata service
+however the crud operation can be restricted using the annotation
+
+few odata operation
+http://localhost:4004/CatalogService/BusinessPartnerSet
+http://localhost:4004/CatalogService/BusinessPartnerSet?$top=1
+http://localhost:4004/CatalogService/BusinessPartnerSet?$skip=1
+http://localhost:4004/CatalogService/BusinessPartnerSet?$filter=bp_role%20eq%20%27CUST%27
+
+
+expand association
+
+http://localhost:4004/CatalogService/pitems(337a2bcc-18a2-11ee-be56-0242ac120002)?$expand=parent_key,product_uuid
+http://localhost:4004/CatalogService/pos(28b30412-18a1-11ee-be56-0242ac120002)?$expand=items
+
+http://localhost:4004/CatalogService/pos(28b30412-18a1-11ee-be56-0242ac120002)?$expand=items&$select=po_id,overall_status
+
+http://localhost:4004/CDSViewService/CDSView
+

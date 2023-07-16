@@ -21,6 +21,16 @@ context master {
         company_name : company_name_type;
     }
 
+    annotate businesspartner with{
+        node_key @title : '{i18n>bp_key}';
+        bp_role @title : '{i18n>bp_role}';
+        email @title : '{i18n>email}';
+        bp_id @title : '{i18n>bp_id}';
+        phone @title : '{i18n>phone}';
+        company_name @title : '{i18n>company_name}';
+    } ;
+    
+
     entity test{
         key name : String(20);
         salary : Int16;
@@ -39,19 +49,20 @@ context master {
         businesspartner : Association to one businesspartner on businesspartner.address_key = $self;
     }
 
-    entity product_text{
-        key node_key : UUID;
-        parent_key : UUID;
-        lang : String(2);
-        text : String(80);
-    }    
+    // entity product_text{
+    //     key node_key : UUID;
+    //     parent_key : UUID;
+    //     lang : String(2);
+    //     text : String(80);
+    // }    
 
     entity product{
         key node_key : UUID;
         product_id : Int16;
         product_name: String(40);
         product_cat: String(2);
-        desc_guid : Association to product_text;
+        description : localized String(255);
+        // desc_guid : Association to product_text;
         price: Decimal;
         currency : String(4);
         supplier_guid : Association to master.businesspartner;
@@ -74,11 +85,13 @@ context transaction {
         parnter_guid : Association to master.businesspartner;
         lifecycle_status : String(2);
         overall_status: String(2);
+        items: Association to many poitems on items.parent_key = $self
     }
 
     entity poitems: cuid,reuse.amount{
-        parent_key : UUID;
+        parent_key : Association to one purchaseorder;
         po_item : Int16;
         product_uuid : Association to master.product;
+
     }
 }
